@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berto & Katy's Hyrox Strategy Timeline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .target-time {
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .station-row {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .time-marker {
+            background: white;
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            min-width: 80px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .station-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .station-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .station-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .station-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .station-duration {
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .station-details {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .distance-info {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .athlete-splits {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .athlete-assignment {
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .berto {
+            background: #e8f5e8;
+            color: #2e7d32;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .katy {
+            background: #fce4ec;
+            color: #c2185b;
+            border-left: 4px solid #E91E63;
+        }
+
+        .special-notes {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .run-segment {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+        }
+
+        .workout-segment {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+        }
+
+        .cumulative-time {
+            background: #2c3e50;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-align: center;
+            min-width: 70px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .station-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .time-marker, .cumulative-time {
+                justify-self: center;
+            }
+            
+            .athlete-splits {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏃‍♂️ Hyrox Mixed Doubles Timeline 🏃‍♀️</h1>
+            <p class="subtitle">Berto & Katy's Race Strategy</p>
+        </div>
+
+        <div class="target-time">
+            🎯 Target Finish: 57:15 + 5min ROX Zone
+        </div>
+
+        <div class="timeline">
+            <!-- 1km Run -->
+            <div class="station-row">
+                <div class="time-marker">0:00</div>
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-title">🏃‍♂️ 1km Run</div>
+                        <div class="station-duration run-segment">3:50</div>
+                    </div>
+                    <div class="station-details">
+                        <div class="distance-info">1000m @ 6 pace</div>
+                        <div class="athlete-splits">
+                            <div class="athlete-assignment berto">Berto: 200m</div>
+                            <div class="athlete-assignment katy">Katy: 200m</div>
+                        </div>
+                        <div class="special-notes">Alternating 200m segments</div>
+                    </div>
+                </div>
+                <div class="cumulative-time">3:50</div>
+            </div>
+
+            <!-- Ski Erg -->
+            <div class="station-row">
+                <div class="time-marker">3:50</div>
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-title">🎿 Ski Erg</div>
+                        <div class="station-duration workout-segment">3:30</div>
+                    </div>
+                    <div class="station-details">
+                        <div class="distance-info">1000m @ 6</div>
+                        <div class="athlete-splits">
+                            <div class="athlete-assignment berto">Berto: 70% (700m)</div>
+                            <div class="athlete-assignment katy">Katy: 30% (300m)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cumulative-time">7:20</div>
+            </div>
+
+            <!-- 1km Run -->
+            <div class="station-row">
+                <div class="time-marker">7:20</div>
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-title">🏃‍♂️ 1km Run</div>
+                        <div class="station-duration run-segment">3:50</div>
+                    </div>
+                </div>
+                <div class="cumulative-time">11:10</div>
+            </div>
+
+            <!-- Sled Push -->
+            <div class="station-row">
+                <div class="time-marker">11:10</div>
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-title">🛷 Sled Push</div>
+                        <div class="station-duration workout-segment">1:35</div>
+                    </div>
+                    <div class="station-details">
+                        <div class="distance-info">50m</div>
+                        <div class="athlete-splits">
+                            <div class="athlete-assignment berto">Berto: 70% (35m)</div>
+                            <div class="athlete-assignment katy">Katy: 30% (15m)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cumulative-time">12:45</div>
+            </div>
+
+            <!-- 1km Run -->
+            <div class="station-row">
+                <div class="time-marker">12:45</div>
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-title">🏃‍♂️ 1km Run</div>
+                        <div class="station-duration run-segment">3:50</div>
+                    </div>
+                </div>
+                <div class="cumulative-time">16:35</div>
+            </div>
+
+            <!-- Sled Pull -->
+            <div class="station-row">
+                <div class="time-marker">16:35</div>
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-title">🪢 Sled Pull</div>
+                        <div class="station-duration workout-segment">2:30</div>
+                    </div>
+                    <div class="station-details">
+                        <div class="distance-info">50m</div>
+                        <div class="athlete-splits">
+                            <div class="athlete-assignment berto">Berto: 70% (35m)</div>
+                            <div class="athlete-assignment katy">Katy: 30% (15m)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cumulative-time">19:05</div>
+            </div>
+
+            <!-- 1km Run -->
+            <div class="station-row">
+                <div class="time-marker">19:05</div>
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-title">🏃‍♂️ 1km Run</div>
+                        <div class="station-duration run-segment">4:00</div>
+                    </div>
+                </div>
+                <div class="cumulative-time">23:05</div>
+            </div>
+
+            <!-- Burpee Broad Jumps -->
+            <div class="station-row">
+                <div class="time-marker">23:05</div>
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-title">🤸‍♂️ Burpee Broad Jumps</div>
+                        <div class="station-duration workout-segment">2:05</div>
+                    </div>
+                    <div class="station-details">
+                        <div class="distance-info">80m</div>
+                        <div class="special-notes">Switch every 5-7 - Call switch ~60-70 Katy</div>
+                    </div>
+                </div>
+                <div class="cumulative-time">25:10</div>
+            </div>
+
+            <!-- 1km Run -->
+            <div class="station-row">
+                <div class="time-marker">25:10</div>
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-title">🏃‍♂️ 1km Run</div>
+                        <div class="station-duration run-segment">3:50</div>
+                    </div>
+                </div>
+                <div class="cumulative-time">29:00</div>
+            </div>
+
+            <!-- Rowing -->
+            <div class="station-row">
+                <div class="time-marker">29:00</div>
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-title">🚣‍♂️ Rowing</div>
+                        <div class="station-duration workout-segment">4:05</div>
+                    </div>
+                    <div class="station-details">
+                        <div class="distance-info">1000m @ 6</div>
+                        <div class="athlete-splits">
+                            <div class="athlete-assignment berto">Berto: 300m</div>
+                            <div class="athlete-assignment katy">Katy: 250-300m</div>
+                        </div>
+                        <div class="special-notes">Berto: 400m finish</div>
+                    </div>
+                </div>
+                <div class="cumulative-time">33:05</div>
+            </div>
+
+            <!-- 1km Run -->
+            <div class="station-row">
+                <div class="time-marker">33:05</div>
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-title">🏃‍♂️ 1km Run</div>
+                        <div class="station-duration run-segment">3:50</div>
+                    </div>
+                </div>
+                <div class="cumulative-time">36:55</div>
+            </div>
+
+            <!-- Farmers Carry -->
+            <div class="station-row">
+                <div class="time-marker">36:55</div>
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-title">🏋️‍♂️ Farmers Carry</div>
+                        <div class="station-duration workout-segment">1:35</div>
+                    </div>
+                    <div class="station-details">
+                        <div class="distance-info">200m</div>
+                        <div class="athlete-splits">
+                            <div class="athlete-assignment berto">Berto: 80m (60-70m)</div>
+                            <div class="athlete-assignment katy">Katy: 40m</div>
+                        </div>
+                        <div class="special-notes">Berto: 50m finish</div>
+                    </div>
+                </div>
+                <div class="cumulative-time">38:30</div>
+            </div>
+
+            <!-- 1km Run -->
+            <div class="station-row">
+                <div class="time-marker">38:30</div>
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-title">🏃‍♂️ 1km Run</div>
+                        <div class="station-duration run-segment">3:50</div>
+                    </div>
+                </div>
+                <div class="cumulative-time">42:20</div>
+            </div>
+
+            <!-- Sandbag Lunges -->
+            <div class="station-row">
+                <div class="time-marker">42:20</div>
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-title">🎒 Sandbag Lunges</div>
+                        <div class="station-duration workout-segment">2:30</div>
+                    </div>
+                    <div class="station-details">
+                        <div class="distance-info">100m</div>
+                        <div class="athlete-splits">
+                            <div class="athlete-assignment berto">Berto: 40m</div>
+                            <div class="athlete-assignment katy">Katy: 40m</div>
+                        </div>
+                        <div class="special-notes">Berto: 20m finish</div>
+                    </div>
+                </div>
+                <div class="cumulative-time">44:50</div>
+            </div>
+
+            <!-- 1km Run -->
+            <div class="station-row">
+                <div class="time-marker">44:50</div>
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-title">🏃‍♂️ 1km Run</div>
+                        <div class="station-duration run-segment">3:50</div>
+                    </div>
+                </div>
+                <div class="cumulative-time">48:40</div>
+            </div>
+
+            <!-- Wall Balls -->
+            <div class="station-row">
+                <div class="time-marker">48:40</div>
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-title">🏐 Wall Balls</div>
+                        <div class="station-duration workout-segment">3:40</div>
+                    </div>
+                    <div class="station-details">
+                        <div class="distance-info">PUSH - Last run</div>
+                        <div class="athlete-splits">
+                            <div class="athlete-assignment katy">Katy: 20</div>
+                            <div class="athlete-assignment berto">Berto: 20</div>
+                        </div>
+                        <div class="special-notes">Alternating sets of 20 reps</div>
+                    </div>
+                </div>
+                <div class="cumulative-time">52:20</div>
+            </div>
+
+            <!-- Final Run -->
+            <div class="station-row">
+                <div class="time-marker">52:20</div>
+                <div class="station-card">
+                    <div class="station-header">
+                        <div class="station-title">🏃‍♂️ Final 1km Run</div>
+                        <div class="station-duration run-segment">4:55</div>
+                    </div>
+                    <div class="station-details">
+                        <div class="special-notes">FINISH STRONG! 🔥</div>
+                    </div>
+                </div>
+                <div class="cumulative-time">57:15</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const stationRows = document.querySelectorAll('.station-row');
+            
+            stationRows.forEach((row, index) => {
+                row.style.opacity = '0';
+                row.style.transform = 'translateX(-20px)';
+                
+                setTimeout(() => {
+                    row.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    row.style.opacity = '1';
+                    row.style.transform = 'translateX(0)';
+                }, index * 150);
+            });
+        });
+    </script>
+</body>
+</html>
