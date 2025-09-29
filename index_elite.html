@@ -209,20 +209,59 @@
             font-variant-numeric: tabular-nums;
         }
 
-        .progress-indicator {
-            position: absolute;
-            left: -1px;
-            top: 0;
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(180deg, #4FC3F7 0%, #29B6F6 100%);
-            border-radius: 1px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        .timeline-segment {
+            display: flex;
+            align-items: center;
+            margin: 12px 0;
         }
 
-        .station-card:hover .progress-indicator {
-            opacity: 1;
+        .timeline-track {
+            display: flex;
+            flex: 1;
+            height: 40px;
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .timeline-block {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            border-right: 1px solid #333;
+            position: relative;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .timeline-block:last-child {
+            border-right: none;
+        }
+
+        .timeline-block.berto-block {
+            background: rgba(46, 125, 50, 0.2);
+            color: #66BB6A;
+            border-color: rgba(46, 125, 50, 0.4);
+        }
+
+        .timeline-block.katy-block {
+            background: rgba(194, 24, 91, 0.2);
+            color: #F06292;
+            border-color: rgba(194, 24, 91, 0.4);
+        }
+
+        .timeline-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .timeline-distance {
+            font-size: 0.6rem;
+            opacity: 0.8;
         }
 
         @media (max-width: 768px) {
@@ -274,11 +313,7 @@
                     </div>
                     <div class="station-details">
                         <div class="distance-info">1000m @ 6 pace</div>
-                        <div class="athlete-splits">
-                            <div class="athlete-assignment berto">Berto: 200m</div>
-                            <div class="athlete-assignment katy">Katy: 200m</div>
-                        </div>
-                        <div class="special-notes">Alternating 200m segments</div>
+                        <div class="special-notes">Each running 1km</div>
                     </div>
                 </div>
                 <div class="cumulative-time">3:50</div>
@@ -288,14 +323,36 @@
             <div class="station-row">
                 <div class="time-marker">3:50</div>
                 <div class="station-card">
-                    <div class="progress-indicator"></div>
                     <div class="station-header">
                         <div class="station-title">Ski Erg</div>
                         <div class="station-duration workout-segment">3:30</div>
                     </div>
                     <div class="station-details">
                         <div class="distance-info">1000m @ 6</div>
-                        <div class="special-notes">Berto: 200m → Katy: 200m → Berto: 200m → Katy: 200m → Berto: 200m</div>
+                        <div class="timeline-segment">
+                            <div class="timeline-track">
+                                <div class="timeline-block berto-block">
+                                    <div class="timeline-label">Berto</div>
+                                    <div class="timeline-distance">200m</div>
+                                </div>
+                                <div class="timeline-block katy-block">
+                                    <div class="timeline-label">Katy</div>
+                                    <div class="timeline-distance">200m</div>
+                                </div>
+                                <div class="timeline-block berto-block">
+                                    <div class="timeline-label">Berto</div>
+                                    <div class="timeline-distance">200m</div>
+                                </div>
+                                <div class="timeline-block katy-block">
+                                    <div class="timeline-label">Katy</div>
+                                    <div class="timeline-distance">200m</div>
+                                </div>
+                                <div class="timeline-block berto-block">
+                                    <div class="timeline-label">Berto</div>
+                                    <div class="timeline-distance">200m</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="cumulative-time">7:20</div>
@@ -414,25 +471,36 @@
             <div class="station-row">
                 <div class="time-marker">29:00</div>
                 <div class="station-card">
-                    <div class="progress-indicator"></div>
                     <div class="station-header">
                         <div class="station-title">Rowing</div>
                         <div class="station-duration workout-segment">4:05</div>
                     </div>
                     <div class="station-details">
                         <div class="distance-info">1000m @ 6</div>
-                        <div class="athlete-splits">
-                            <div class="athlete-assignment berto">Berto: 200m</div>
-                            <div class="athlete-assignment katy">Katy: 200m</div>
+                        <div class="timeline-segment">
+                            <div class="timeline-track">
+                                <div class="timeline-block berto-block">
+                                    <div class="timeline-label">Berto</div>
+                                    <div class="timeline-distance">200m</div>
+                                </div>
+                                <div class="timeline-block katy-block">
+                                    <div class="timeline-label">Katy</div>
+                                    <div class="timeline-distance">200m</div>
+                                </div>
+                                <div class="timeline-block berto-block">
+                                    <div class="timeline-label">Berto</div>
+                                    <div class="timeline-distance">200m</div>
+                                </div>
+                                <div class="timeline-block katy-block">
+                                    <div class="timeline-label">Katy</div>
+                                    <div class="timeline-distance">200m</div>
+                                </div>
+                                <div class="timeline-block berto-block">
+                                    <div class="timeline-label">Berto</div>
+                                    <div class="timeline-distance">200m</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="athlete-splits">
-                            <div class="athlete-assignment berto">Berto: 200m</div>
-                            <div class="athlete-assignment katy">Katy: 200m</div>
-                        </div>
-                        <div class="athlete-splits">
-                            <div class="athlete-assignment berto">Berto: 200m</div>
-                        </div>
-                        <div class="special-notes">Alternating 200m segments: B→K→B→K→B</div>
                     </div>
                 </div>
                 <div class="cumulative-time">33:05</div>
