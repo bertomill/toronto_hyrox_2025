@@ -31,21 +31,24 @@
         }
 
         .header h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, #4FC3F7 0%, #29B6F6 50%, #0288D1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.02em;
+            font-size: 3.2rem;
+            font-weight: 300;
+            margin-bottom: 12px;
+            color: #ffffff;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            text-transform: uppercase;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
         .header .subtitle {
-            font-size: 1.1rem;
-            color: #888;
+            font-size: 0.95rem;
+            color: #666;
             font-weight: 400;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
         .target-time {
@@ -61,6 +64,327 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.4);
         }
 
+        .animation-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .play-btn {
+            background: linear-gradient(135deg, #4FC3F7 0%, #29B6F6 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 16px 32px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(79, 195, 247, 0.3);
+        }
+
+        .play-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(79, 195, 247, 0.4);
+        }
+
+        .play-btn:active {
+            transform: translateY(0);
+        }
+
+        .play-btn.playing {
+            background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+            box-shadow: 0 4px 20px rgba(244, 67, 54, 0.3);
+        }
+
+        .play-btn.playing:hover {
+            box-shadow: 0 8px 32px rgba(244, 67, 54, 0.4);
+        }
+
+        .play-icon {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .race-timer {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #4FC3F7;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .runner-avatars {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+            opacity: 0;
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .runner-avatars.active {
+            opacity: 1;
+        }
+
+        .station-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 1px solid #333;
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .runner-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: bold;
+            border: 2px solid;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .runner-avatar.berto {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            border-color: #4CAF50;
+            color: white;
+        }
+
+        .runner-avatar.katy {
+            background: linear-gradient(135deg, #E91E63 0%, #c2185b 100%);
+            border-color: #E91E63;
+            color: white;
+        }
+
+        .runner-avatar.running::after {
+            content: '💨';
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.7rem;
+            animation: dash 0.8s infinite;
+        }
+
+        @keyframes dash {
+            0%, 100% { opacity: 0.4; transform: translateY(-50%) translateX(0); }
+            50% { opacity: 1; transform: translateY(-50%) translateX(-4px); }
+        }
+
+        .victory-celebration {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .victory-celebration.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .podium-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #4FC3F7;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(79, 195, 247, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .trophy {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            animation: trophy-bounce 2s infinite;
+        }
+
+        @keyframes trophy-bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(5deg); }
+            50% { transform: translateY(-15px) rotate(0deg); }
+            75% { transform: translateY(-10px) rotate(-5deg); }
+        }
+
+        .victory-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #4FC3F7;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .podium {
+            display: flex;
+            align-items: end;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .podium-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .podium-base {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border: 2px solid #FFD700;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+
+        .podium-base.first {
+            width: 80px;
+            height: 100px;
+            font-size: 1.2rem;
+        }
+
+        .podium-base.second {
+            width: 70px;
+            height: 80px;
+            font-size: 1rem;
+            background: linear-gradient(135deg, #C0C0C0 0%, #A0A0A0 100%);
+            border-color: #C0C0C0;
+        }
+
+        .podium-winner {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border: 3px solid #FFD700;
+            animation: winner-glow 2s infinite alternate;
+        }
+
+        .podium-winner.berto {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+        }
+
+        .podium-winner.katy {
+            background: linear-gradient(135deg, #E91E63 0%, #c2185b 100%);
+            color: white;
+        }
+
+        @keyframes winner-glow {
+            0% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+            100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.3); }
+        }
+
+        .victory-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #4FC3F7;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #4FC3F7;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        .confetti:nth-child(odd) {
+            background: #FFD700;
+            animation-delay: 0.5s;
+        }
+
+        .confetti:nth-child(3n) {
+            background: #4CAF50;
+            animation-delay: 1s;
+        }
+
+        .confetti:nth-child(4n) {
+            background: #E91E63;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .close-celebration {
+            margin-top: 20px;
+            background: linear-gradient(135deg, #4FC3F7 0%, #29B6F6 100%);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 24px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-celebration:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 195, 247, 0.4);
+        }
+
         .timeline {
             display: flex;
             flex-direction: column;
@@ -74,6 +398,52 @@
             align-items: center;
             opacity: 0;
             transform: translateY(20px);
+            position: relative;
+        }
+
+        .station-row.active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.5s ease;
+        }
+
+        .station-row.current {
+            background: rgba(79, 195, 247, 0.05);
+            border-radius: 16px;
+            padding: 8px;
+            margin: -8px;
+        }
+
+        .progress-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(79, 195, 247, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-indicator::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #4FC3F7 0%, #29B6F6 100%);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .station-card.progressing .progress-indicator::after {
+            animation: fillProgress var(--duration) linear forwards;
+        }
+
+        @keyframes fillProgress {
+            from { width: 0%; }
+            to { width: 100%; }
         }
 
         .time-marker {
@@ -294,11 +664,72 @@
     <div class="container">
         <div class="header">
             <h1>Hyrox Mixed Doubles</h1>
-            <p class="subtitle">Berto & Katy's Elite Strategy</p>
+            <p class="subtitle">Berto & Katy's Strategy</p>
         </div>
 
         <div class="target-time">
             Target: 57:15 + 5min ROX Zone
+        </div>
+
+        <div class="animation-controls">
+            <button id="playButton" class="play-btn">
+                <div class="play-icon">▶</div>
+                <span>Start Race Animation</span>
+            </button>
+            <div id="raceTimer" class="race-timer">00:00</div>
+        </div>
+
+        <div id="runnerAvatars" class="runner-avatars">
+            <div class="runner-avatar berto">B</div>
+            <div class="runner-avatar katy">K</div>
+        </div>
+
+        <div id="victoryCelebration" class="victory-celebration">
+            <!-- Confetti -->
+            <div class="confetti" style="left: 10%; animation-delay: 0s;"></div>
+            <div class="confetti" style="left: 20%; animation-delay: 0.3s;"></div>
+            <div class="confetti" style="left: 30%; animation-delay: 0.6s;"></div>
+            <div class="confetti" style="left: 40%; animation-delay: 0.9s;"></div>
+            <div class="confetti" style="left: 50%; animation-delay: 1.2s;"></div>
+            <div class="confetti" style="left: 60%; animation-delay: 1.5s;"></div>
+            <div class="confetti" style="left: 70%; animation-delay: 1.8s;"></div>
+            <div class="confetti" style="left: 80%; animation-delay: 2.1s;"></div>
+            <div class="confetti" style="left: 90%; animation-delay: 2.4s;"></div>
+            
+            <div class="podium-container">
+                <div class="trophy">🏆</div>
+                <div class="victory-title">Race Complete!</div>
+                
+                <div class="podium">
+                    <div class="podium-step">
+                        <div class="podium-winner katy">K</div>
+                        <div class="podium-base second">2nd</div>
+                    </div>
+                    <div class="podium-step">
+                        <div class="podium-winner berto">B</div>
+                        <div class="podium-base first">1st</div>
+                    </div>
+                </div>
+                
+                <div class="victory-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">57:15</div>
+                        <div class="stat-label">Target Time</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">17</div>
+                        <div class="stat-label">Stations</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">8km</div>
+                        <div class="stat-label">Running</div>
+                    </div>
+                </div>
+                
+                <button class="close-celebration" onclick="closeCelebration()">
+                    Continue Training 💪
+                </button>
+            </div>
         </div>
 
         <div class="timeline">
@@ -381,10 +812,28 @@
                         <div class="station-duration workout-segment">1:35</div>
                     </div>
                     <div class="station-details">
-                        <div class="distance-info">50m</div>
+                        <div class="distance-info">50m (4 sets of 12.5m)</div>
                         <div class="athlete-splits">
-                            <div class="athlete-assignment berto">Berto: 70% (35m)</div>
-                            <div class="athlete-assignment katy">Katy: 30% (15m)</div>
+                            <div class="set-breakdown">
+                                <div class="set-info">Set 1 (12.5m):</div>
+                                <div class="athlete-assignment berto">Berto: 60% (7.5m)</div>
+                                <div class="athlete-assignment katy">Katy: 40% (5m)</div>
+                            </div>
+                            <div class="set-breakdown">
+                                <div class="set-info">Set 2 (12.5m):</div>
+                                <div class="athlete-assignment berto">Berto: 60% (7.5m)</div>
+                                <div class="athlete-assignment katy">Katy: 40% (5m)</div>
+                            </div>
+                            <div class="set-breakdown">
+                                <div class="set-info">Set 3 (12.5m):</div>
+                                <div class="athlete-assignment berto">Berto: 60% (7.5m)</div>
+                                <div class="athlete-assignment katy">Katy: 40% (5m)</div>
+                            </div>
+                            <div class="set-breakdown">
+                                <div class="set-info">Set 4 (12.5m):</div>
+                                <div class="athlete-assignment berto">Berto: 60% (7.5m)</div>
+                                <div class="athlete-assignment katy">Katy: 40% (5m)</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -414,10 +863,28 @@
                         <div class="station-duration workout-segment">2:30</div>
                     </div>
                     <div class="station-details">
-                        <div class="distance-info">50m</div>
+                        <div class="distance-info">50m (4 sets of 12.5m)</div>
                         <div class="athlete-splits">
-                            <div class="athlete-assignment berto">Berto: 70% (35m)</div>
-                            <div class="athlete-assignment katy">Katy: 30% (15m)</div>
+                            <div class="set-breakdown">
+                                <div class="set-info">Set 1 (12.5m):</div>
+                                <div class="athlete-assignment berto">Berto: 60% (7.5m)</div>
+                                <div class="athlete-assignment katy">Katy: 40% (5m)</div>
+                            </div>
+                            <div class="set-breakdown">
+                                <div class="set-info">Set 2 (12.5m):</div>
+                                <div class="athlete-assignment berto">Berto: 60% (7.5m)</div>
+                                <div class="athlete-assignment katy">Katy: 40% (5m)</div>
+                            </div>
+                            <div class="set-breakdown">
+                                <div class="set-info">Set 3 (12.5m):</div>
+                                <div class="athlete-assignment berto">Berto: 60% (7.5m)</div>
+                                <div class="athlete-assignment katy">Katy: 40% (5m)</div>
+                            </div>
+                            <div class="set-breakdown">
+                                <div class="set-info">Set 4 (12.5m):</div>
+                                <div class="athlete-assignment berto">Berto: 60% (7.5m)</div>
+                                <div class="athlete-assignment katy">Katy: 40% (5m)</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -448,7 +915,9 @@
                     </div>
                     <div class="station-details">
                         <div class="distance-info">80m</div>
-                        <div class="special-notes">Switch every 5-7 - Call switch ~60-70 Katy</div>
+                        <div class="athlete-splits">
+                            <div class="special-notes">Switch every 5-7</div>
+                        </div>
                     </div>
                 </div>
                 <div class="cumulative-time">25:10</div>
@@ -481,23 +950,15 @@
                             <div class="timeline-track">
                                 <div class="timeline-block berto-block">
                                     <div class="timeline-label">Berto</div>
-                                    <div class="timeline-distance">200m</div>
+                                    <div class="timeline-distance">300m</div>
                                 </div>
                                 <div class="timeline-block katy-block">
                                     <div class="timeline-label">Katy</div>
-                                    <div class="timeline-distance">200m</div>
+                                    <div class="timeline-distance">250-300m</div>
                                 </div>
                                 <div class="timeline-block berto-block">
                                     <div class="timeline-label">Berto</div>
-                                    <div class="timeline-distance">200m</div>
-                                </div>
-                                <div class="timeline-block katy-block">
-                                    <div class="timeline-label">Katy</div>
-                                    <div class="timeline-distance">200m</div>
-                                </div>
-                                <div class="timeline-block berto-block">
-                                    <div class="timeline-label">Berto</div>
-                                    <div class="timeline-distance">200m</div>
+                                    <div class="timeline-distance">400m</div>
                                 </div>
                             </div>
                         </div>
@@ -575,11 +1036,22 @@
                     </div>
                     <div class="station-details">
                         <div class="distance-info">100m</div>
-                        <div class="athlete-splits">
-                            <div class="athlete-assignment berto">Berto: 40m</div>
-                            <div class="athlete-assignment katy">Katy: 40m</div>
+                        <div class="timeline-segment">
+                            <div class="timeline-track">
+                                <div class="timeline-block berto-block">
+                                    <div class="timeline-label">Berto</div>
+                                    <div class="timeline-distance">40m</div>
+                                </div>
+                                <div class="timeline-block katy-block">
+                                    <div class="timeline-label">Katy</div>
+                                    <div class="timeline-distance">40m</div>
+                                </div>
+                                <div class="timeline-block berto-block">
+                                    <div class="timeline-label">Berto</div>
+                                    <div class="timeline-distance">20m</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="special-notes">Berto: 20m finish</div>
                     </div>
                 </div>
                 <div class="cumulative-time">44:50</div>
@@ -608,12 +1080,31 @@
                         <div class="station-duration workout-segment">3:40</div>
                     </div>
                     <div class="station-details">
-                        <div class="distance-info">PUSH - Last run</div>
-                        <div class="athlete-splits">
-                            <div class="athlete-assignment katy">Katy: 20</div>
-                            <div class="athlete-assignment berto">Berto: 20</div>
+                        <div class="distance-info">100 reps (5 sets of 20)</div>
+                        <div class="timeline-segment">
+                            <div class="timeline-track">
+                                <div class="timeline-block katy-block">
+                                    <div class="timeline-label">Katy</div>
+                                    <div class="timeline-distance">20</div>
+                                </div>
+                                <div class="timeline-block berto-block">
+                                    <div class="timeline-label">Berto</div>
+                                    <div class="timeline-distance">20</div>
+                                </div>
+                                <div class="timeline-block katy-block">
+                                    <div class="timeline-label">Katy</div>
+                                    <div class="timeline-distance">20</div>
+                                </div>
+                                <div class="timeline-block berto-block">
+                                    <div class="timeline-label">Berto</div>
+                                    <div class="timeline-distance">20</div>
+                                </div>
+                                <div class="timeline-block katy-block">
+                                    <div class="timeline-label">Katy</div>
+                                    <div class="timeline-distance">20</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="special-notes">Alternating sets of 20 reps</div>
                     </div>
                 </div>
                 <div class="cumulative-time">52:20</div>
@@ -638,24 +1129,238 @@
     </div>
 
     <script>
-        // Elite entrance animation inspired by Eight Sleep
+        // Race animation system
         document.addEventListener('DOMContentLoaded', function() {
             const stationRows = document.querySelectorAll('.station-row');
+            const playButton = document.getElementById('playButton');
+            const raceTimer = document.getElementById('raceTimer');
+            const runnerAvatars = document.getElementById('runnerAvatars');
+            const playIcon = playButton.querySelector('.play-icon');
+            const playText = playButton.querySelector('span');
             
-            // Staggered animation with refined timing
+            let isPlaying = false;
+            let currentStationIndex = 0;
+            let raceStartTime = 0;
+            let animationInterval;
+            let stationTimeout;
+            
+            // Race schedule with durations in milliseconds (20-second total animation - slower)
+            const raceSchedule = [
+                { name: "1km Run", duration: 1200 },          // 1.2s
+                { name: "Ski Erg", duration: 1000 },          // 1.0s
+                { name: "1km Run", duration: 1200 },          // 1.2s
+                { name: "Sled Push", duration: 800 },         // 0.8s
+                { name: "1km Run", duration: 1200 },          // 1.2s
+                { name: "Sled Pull", duration: 1000 },        // 1.0s
+                { name: "1km Run", duration: 1400 },          // 1.4s
+                { name: "Burpee Broad Jumps", duration: 900 }, // 0.9s
+                { name: "1km Run", duration: 1200 },          // 1.2s
+                { name: "Rowing", duration: 1400 },           // 1.4s
+                { name: "1km Run", duration: 1200 },          // 1.2s
+                { name: "Farmers Carry", duration: 800 },     // 0.8s
+                { name: "1km Run", duration: 1200 },          // 1.2s
+                { name: "Sandbag Lunges", duration: 1000 },   // 1.0s
+                { name: "1km Run", duration: 1200 },          // 1.2s
+                { name: "Wall Balls", duration: 1200 },       // 1.2s
+                { name: "Final 1km Run", duration: 1600 }     // 1.6s (finish strong!)
+            ];
+            // Total: ~20 seconds
+            
+            // Initial entrance animation
             stationRows.forEach((row, index) => {
                 setTimeout(() => {
-                    row.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-                    row.style.opacity = '1';
-                    row.style.transform = 'translateY(0)';
+                    row.classList.add('active');
                 }, index * 100);
             });
-
-            // Add subtle parallax effect on scroll
+            
+            function formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+            
+            function updateTimer() {
+                if (!isPlaying) return;
+                
+                // Show animated timer that goes from 0 to target time over ~20 seconds
+                const elapsed = Math.floor((Date.now() - raceStartTime) / 200); // Slower progression
+                const displaySeconds = Math.min(elapsed, 3435); // Cap at target time (57:15)
+                raceTimer.textContent = formatTime(displaySeconds);
+            }
+            
+            function moveRunnersToStation(index) {
+                if (index >= stationRows.length) return;
+                
+                const row = stationRows[index];
+                const stationCard = row.querySelector('.station-card');
+                
+                // Position avatars at the start of the current station card
+                const cardRect = stationCard.getBoundingClientRect();
+                const timelineRect = document.querySelector('.timeline').getBoundingClientRect();
+                
+                const topOffset = cardRect.top - timelineRect.top + (cardRect.height / 2);
+                const startLeftOffset = cardRect.left - timelineRect.left + 10; // Very left edge
+                
+                // Move avatars to the start of the current station (far left)
+                runnerAvatars.style.transform = `translate(${startLeftOffset}px, ${topOffset - 50}px)`;
+                
+                // Add running animation
+                const avatars = runnerAvatars.querySelectorAll('.runner-avatar');
+                avatars.forEach(avatar => avatar.classList.add('running'));
+                
+                // Remove previous current station
+                stationRows.forEach(r => r.classList.remove('current'));
+                
+                // Highlight current station
+                row.classList.add('current');
+                
+                // Animate runners moving across the station card
+                const duration = raceSchedule[index]?.duration || 1200;
+                const cardWidth = cardRect.width - 80; // Leave margin for avatar size
+                const endLeftOffset = startLeftOffset + cardWidth;
+                
+                setTimeout(() => {
+                    // Move to the far right of the station card
+                    runnerAvatars.style.transform = `translate(${endLeftOffset}px, ${topOffset - 50}px)`;
+                }, 50); // Very small delay to show start position
+                
+                // Start progress animation
+                stationCard.style.setProperty('--duration', `${duration}ms`);
+                stationCard.classList.add('progressing');
+            }
+            
+            function startRaceAnimation() {
+                if (isPlaying) {
+                    // Pause
+                    isPlaying = false;
+                    clearInterval(animationInterval);
+                    clearTimeout(stationTimeout);
+                    
+                    playIcon.textContent = '▶';
+                    playText.textContent = 'Resume Race';
+                    playButton.classList.remove('playing');
+                    
+                    // Stop running animation
+                    const avatars = runnerAvatars.querySelectorAll('.runner-avatar');
+                    avatars.forEach(avatar => avatar.classList.remove('running'));
+                    
+                    return;
+                }
+                
+                // Start/Resume
+                isPlaying = true;
+                
+                if (currentStationIndex === 0) {
+                    raceStartTime = Date.now();
+                    runnerAvatars.classList.add('active');
+                } else {
+                    // Adjust start time for resume
+                    const elapsedStations = raceSchedule.slice(0, currentStationIndex);
+                    const elapsedTime = elapsedStations.reduce((total, station) => total + station.duration, 0);
+                    raceStartTime = Date.now() - elapsedTime; // Already in milliseconds
+                }
+                
+                playIcon.textContent = '⏸';
+                playText.textContent = 'Pause Race';
+                playButton.classList.add('playing');
+                
+                // Start timer (faster updates for smooth animation)
+                animationInterval = setInterval(updateTimer, 50);
+                updateTimer();
+                
+                // Continue from current station
+                animateNextStation();
+            }
+            
+            function animateNextStation() {
+                if (!isPlaying || currentStationIndex >= stationRows.length) {
+                    // Race finished
+                    isPlaying = false;
+                    clearInterval(animationInterval);
+                    
+                    playIcon.textContent = '🏁';
+                    playText.textContent = 'Race Complete!';
+                    playButton.classList.remove('playing');
+                    
+                    // Stop running animation
+                    const avatars = runnerAvatars.querySelectorAll('.runner-avatar');
+                    avatars.forEach(avatar => avatar.classList.remove('running'));
+                    
+                    // Show victory celebration after a brief delay
+                    setTimeout(() => {
+                        showVictoryCelebration();
+                    }, 1000);
+                    
+                    return;
+                }
+                
+                moveRunnersToStation(currentStationIndex);
+                
+                const duration = raceSchedule[currentStationIndex]?.duration || 600;
+                
+                stationTimeout = setTimeout(() => {
+                    if (isPlaying) {
+                        currentStationIndex++;
+                        animateNextStation();
+                    }
+                }, duration); // Duration is already in milliseconds
+            }
+            
+            function resetRace() {
+                isPlaying = false;
+                currentStationIndex = 0;
+                clearInterval(animationInterval);
+                clearTimeout(stationTimeout);
+                
+                // Reset UI
+                playIcon.textContent = '▶';
+                playText.textContent = 'Start Race Animation';
+                playButton.classList.remove('playing');
+                raceTimer.textContent = '00:00';
+                runnerAvatars.classList.remove('active');
+                runnerAvatars.style.transform = 'translate(20px, -50px)'; // Reset to starting position
+                
+                // Hide victory celebration
+                document.getElementById('victoryCelebration').classList.remove('show');
+                
+                // Reset stations
+                stationRows.forEach(row => {
+                    row.classList.remove('current');
+                    row.querySelector('.station-card').classList.remove('progressing');
+                });
+                
+                // Stop running animation
+                const avatars = runnerAvatars.querySelectorAll('.runner-avatar');
+                avatars.forEach(avatar => avatar.classList.remove('running'));
+            }
+            
+            function showVictoryCelebration() {
+                const celebration = document.getElementById('victoryCelebration');
+                celebration.classList.add('show');
+                
+                // Add some celebration sound effect simulation with animation
+                const trophy = celebration.querySelector('.trophy');
+                trophy.style.animation = 'trophy-bounce 0.5s ease-in-out 3';
+            }
+            
+            function closeCelebration() {
+                const celebration = document.getElementById('victoryCelebration');
+                celebration.classList.remove('show');
+            }
+            
+            // Make closeCelebration globally available
+            window.closeCelebration = closeCelebration;
+            
+            // Event listeners
+            playButton.addEventListener('click', startRaceAnimation);
+            
+            // Double-click to reset
+            playButton.addEventListener('dblclick', resetRace);
+            
+            // Add scroll parallax effect
             window.addEventListener('scroll', () => {
                 const scrolled = window.pageYOffset;
-                const rate = scrolled * -0.2;
-                
+                const rate = scrolled * -0.1;
                 document.querySelector('.header').style.transform = `translateY(${rate}px)`;
             });
         });
